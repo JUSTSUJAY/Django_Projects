@@ -1,0 +1,57 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8"> 
+	<title>Wallpapers</title> 
+	<style> 
+		/* Add CSS styles for flex container and items */
+		body {
+			background-color: #1a1a1a;
+			color: #ffffff;
+		}
+
+		.product-list { 
+			display: flex; 
+			flex-wrap: wrap; /* Allow items to wrap to the next row if necessary */
+			justify-content: space-between; /* Space items evenly along the main axis */
+			list-style: none; /* Remove list styles */
+			padding: 0; 
+		} 
+
+		.product-item { 
+			flex: 1; /* Grow to fill available space evenly */
+			max-width: 30%; /* Limit item width to avoid overcrowding */
+			margin: 10px; /* Add spacing between items */
+			border: 1px solid #444; /* Add a border for visual separation */ 
+			padding: 10px; 
+			text-align: center; 
+			background-color: #2a2a2a;
+		} 
+
+		a {
+			color: #4da6ff;
+		}
+
+		a:hover {
+			color: #80bfff;
+		}
+
+	</style> 
+</head>
+</head> 
+<body> 
+	<h1 style="text-align:center;">Wallpapers Catalog</h1> 
+	
+	<ul class="product-list"> 
+		{% for product in products %} 
+			<li class="product-item"> 
+				<a href="#"> 
+					<img src="{{ product.image.url }}" alt="{{ product.name }}" width="200"> 
+				</a> 
+				<h2>{{ product.name }}</h2> 
+				<p>{{ product.description }}</p> 
+			</li> 
+		{% endfor %} 
+	</ul> 
+</body> 
+</html> 
