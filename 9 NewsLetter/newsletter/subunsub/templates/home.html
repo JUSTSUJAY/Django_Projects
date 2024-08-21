@@ -1,0 +1,37 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SubUnsub</title>
+    </head>
+    <body style="background-color: #1a1a1a; color: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">
+        <div style="text-align: center;">
+            {% if messages %}
+                <ul class="messages" style="color: #00ff00; list-style-type: none; padding: 0;">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                        {{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+                <label for="email"><h1 style="color: #ffffff;">Enter your Email: </h1></label>
+                <input type="email" name="email" id="email" style="background-color: #333333; color: #ffffff; border: 1px solid #555555; margin-bottom: 20px; padding: 5px;">
+                <br>
+                <button type="submit" name="subscribe" style="background-color: #4CAF50; color: black; border: none; padding: 10px 20px; cursor: pointer; margin-right: 10px; font-size:1em;">Subscribe</button>
+                <button type="submit" name="unsubscribe" style="background-color: #f44336; color: black; border: none; padding: 10px 20px; cursor: pointer; font-size:1em;">UnSubscribe</button>
+            </form>
+        </div>    </body>    </body>
+    <script>
+        // Remove messages after 5 seconds
+        setTimeout(function() {
+            var messages = document.getElementsByClassName('messages');
+            if (messages.length > 0) {
+                messages[0].style.display = 'none';
+            }
+        }, 5000);
+    </script>
+</html>
