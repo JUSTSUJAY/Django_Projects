@@ -4,6 +4,19 @@
 
 {% block content %} 
 <h1 class="text-center mt-4">We are Cuisine</h1>
+<style>
+    .card-img-top {
+        height: 400px; /* Set a fixed height */
+        object-fit: cover; /* Ensure the image covers the area without distortion */
+        width: 100%; /* Ensure the image fills the width of the card */
+    }
+
+</style>
+
+<div class="text-center mt-4">
+    <a href="{% url 'create_recipe' %}" class="btn btn-primary">Create a Recipe</a>
+</div>
+</style>
 
 <div class="container mt-4">
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
@@ -13,12 +26,17 @@
                 <img src="{{recipe.recipe_image.url}}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{recipe.recipe_name}}</h5>
-                    <p class="card-text">{{recipe.recipe_decription}}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <p class="card-text">{{ recipe.recipe_decription|truncatechars:400 }}</p>
+                    {% comment %} <a href="{% url 'recipe_detail' recipe.id %}" class="btn btn-primary">Read More</a> {% endcomment %}
+                    <a href="#" class="btn btn-success">Read More</a>
+                    {% if recipe.user == user %}
+                    <a href="{% url 'edit_recipe' recipe.id %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url "delete_recipe" recipe.id %}" class="btn btn-danger">Delete</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
         {% endfor %}
-    </div>
+    </div>    </div>
 </div>
 {% endblock content %}

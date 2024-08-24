@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Are you sure you want to delete?</h2>
+<form method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger">Delete</button>
+    <a class = "btn btn-success" href="{% url "home" %}">Cancel</a>
+</form>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% if form.instance.pk %}Edit Form {% else %}Create From{% endif %}
+<form method="post" enctype = "multipart/form-data" class = "form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
