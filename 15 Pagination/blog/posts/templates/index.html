@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #000000;
+}
+
+.header {
+  padding: 2px;
+  font-size: 40px;
+  text-align: center;
+  background: black;
+  color: white;
+}
+
+.leftcolumn {   
+  float: left;
+  width: 100%;
+}
+
+.card {
+   background-color: #282828;
+   padding: 20px;
+   margin-top: 20px;
+   color: white;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h2>Jay'log</h2>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    {% for post in page_obj.object_list %}
+      <div class="card">
+        <a style = "text-decoration:None; color:white" href="/posts/{{post.id}}">
+          <h2>{{post.title}}</h2>
+          <h4>{{post.created_at}}</h4>
+          <p>{{post.body|truncatewords:5}}</p>
+        </a>
+      </div>    
+    {% endfor %}
+
+    <center>
+      {%if page_obj.has_previous %} {# whether the previous page exists #}
+          <a href="?page={{page_obj.previous_page_number}}" style="color: #00FFFF;">{{page_obj.previous_page_number}}</a> {# link to the prev page #}
+      {% endif %}
+      <span style="color: white;">{{page_obj.number}}</span> {# the current page number #}
+     
+      {%if page_obj.has_next %} {# whether the next page exists #}
+          <a href="?page={{page_obj.next_page_number}}" style="color: #00FFFF;">{{page_obj.next_page_number}}</a> {# link to the next page #}
+      {% endif %}
+  </center>
+
+  </div>
+</div>
+
+</body>
+</html>
